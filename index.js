@@ -166,7 +166,11 @@ function appleIndex(arrayWithApple) {
  * the returned value should be: [ false, true, false, false, true, false ].
 */
 function isItAnApple(fruits) {
-  return fruits.map(x => x == "apple");
+  let res = [];
+  for(let i=0;i<fruits.length; i++){
+    res.push(fruits[i] === "apple");
+  }
+  return res;
 }
 
 
@@ -255,10 +259,10 @@ function getLastCarInfo(inventory) {
 */
 function getModelYears(inventory) {
   let years = [];
-  inventory.forEach(element => {
-    years.push(element.car_year);
-    
-  });
+
+  for(let i=0; i< inventory.length; i++){
+    years.push(inventory[i].car_year);
+  }
   return years;
 }
 
@@ -278,12 +282,12 @@ function getModelYears(inventory) {
 */
 function getCarInfoById(inventory, num) {
   let res;
-  inventory.forEach(element => {
-    if(element.id == num){
-      res = `This is a ${element.car_make} ${element.car_model}`;
+
+  for(let i=0;i<inventory.length;i++){
+    if(inventory[i].id == num){
+      res = `This is a ${inventory[i].car_make} ${inventory[i].car_model}`;
     }
-    
-  });
+  }
   return res;
 }
 
@@ -302,7 +306,15 @@ function getCarInfoById(inventory, num) {
  * in the same order as they appear in the original inventory.
 */
 function getOlderCars(inventory, max_year) {
-  let old = inventory.filter(cars => cars.car_year <= max_year);
+  let old = [];
+
+  for(let i=0;i<inventory.length;i++){
+    if(inventory[i].car_year<=max_year){
+      old.push(inventory[i]);
+    }
+  }
+
+  
   return old;
 }
 
@@ -320,11 +332,23 @@ function getOlderCars(inventory, max_year) {
  * in the same order as they appear in the original inventory.
 */
 function getGermanCars(inventory) {
-  let german = inventory.filter(cars => 
-      cars.car_make == "Audi" || 
-      cars.car_make == "Mercedes-Benz" || 
-      cars.car_make == "Volkswagen" || 
-      cars.car_make == "BMW");
+
+  let german = [];
+  for(let i=0;i<inventory.length;i++){
+    if(inventory[i].car_make == "Audi" || 
+    inventory[i].car_make == "Mercedes-Benz" || 
+    inventory[i].car_make == "Volkswagen" || 
+    inventory[i].car_make == "BMW"){
+        german.push(inventory[i]);
+
+    }
+  }
+
+  // let german = inventory.filter(cars => 
+      // cars.car_make == "Audi" || 
+      // cars.car_make == "Mercedes-Benz" || 
+      // cars.car_make == "Volkswagen" || 
+      // cars.car_make == "BMW");
   return german;
 }
 
